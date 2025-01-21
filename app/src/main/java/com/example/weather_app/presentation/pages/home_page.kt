@@ -18,6 +18,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
@@ -28,19 +29,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
-import com.example.weather_app.WeatherViewModel
+import com.example.weather_app.viewModels.WeatherViewModel
 import com.example.weather_app.data.remote.NetworkResponse
 import com.example.weather_app.presentation.widgets.WeatherResponseOnSuccess
 import com.example.weather_app.presentation.widgets.WeatherResponseOnError
+import com.example.weather_app.viewModels.LocationViewModel
 
 @Composable
-fun Homepage(viewModel: WeatherViewModel) {
-    var city by remember {
-        mutableStateOf("")
-    }
-
+fun Homepage(viewModel: WeatherViewModel, locationViewModel: LocationViewModel) {
+    var city by remember { mutableStateOf("") }
     val weatherResult = viewModel.weatherResult.observeAsState()
     val keyboardController = LocalSoftwareKeyboardController.current
+    val currentLocation by locationViewModel.location.observeAsState()
+
+    // Fetch weather data based on location when location is available
+    LaunchedEffect(currentLocation) {
+        currentLocation?.let {
+            viewModel.getDataByLocation(it.latitude, it.longitude)
+        }
+    }
 
     Box(
         modifier = Modifier

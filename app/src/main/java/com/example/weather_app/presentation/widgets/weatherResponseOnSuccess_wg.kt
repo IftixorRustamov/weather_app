@@ -23,7 +23,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
-import com.example.weather_app.data.remote.WeatherModel
+import com.example.weather_app.data.remote.models.WeatherModel
 
 @Composable
 fun WeatherResponseOnSuccess(data: WeatherModel) {
