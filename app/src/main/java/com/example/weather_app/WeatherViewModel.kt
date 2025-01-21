@@ -10,6 +10,7 @@ import com.example.weather_app.data.remote.NetworkResponse
 import com.example.weather_app.data.remote.RetrofitInstance
 import com.example.weather_app.data.remote.WeatherModel
 import kotlinx.coroutines.launch
+import okio.IOException
 
 class WeatherViewModel : ViewModel() {
 
@@ -19,21 +20,20 @@ class WeatherViewModel : ViewModel() {
 
 
     fun getData(city: String) {
-        _weatherResult.value = NetworkResponse.Loading
         viewModelScope.launch {
+            _weatherResult.value = NetworkResponse.Loading
             try {
                 val response = weatherApi.getWeatherData(AppConstant.apiKey, city)
-                if (response.isSuccessful) {
-                    response.body()?.let {
-                        _weatherResult.value = NetworkResponse.Success(it)
-                    }
+                if (response.isSuccessful && response.body() != null) {
+                    _weatherResult.value = NetworkResponse.Success(response.body()!!)
                 } else {
                     _weatherResult.value = NetworkResponse.Error("Failed to load data")
                 }
+            } catch (e: IOException) {
+                _weatherResult.value = NetworkResponse.Error("Your Network is not connected")
             } catch (e: Exception) {
-                _weatherResult.value = NetworkResponse.Error("Failed to load data")
+                _weatherResult.value = NetworkResponse.Error("Unexpected Error is occurred")
             }
-
         }
     }
 

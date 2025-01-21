@@ -39,11 +39,12 @@ fun WeatherResponseOnError(
                 text = result.errorMessage,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.SemiBold,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                color =  Color.Red
             )
             Spacer(modifier = Modifier.height(16.dp))
             Button(
-                onRetryClick,
+                onClick = onRetryClick,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.Blue,
                     contentColor = Color.White,
