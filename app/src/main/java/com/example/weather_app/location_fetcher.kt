@@ -1,3 +1,5 @@
+package com.example.weather_app
+
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
@@ -6,16 +8,19 @@ import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import androidx.core.content.ContextCompat
 
 class LocationManagerAPI(private val context: Context) {
-    private var currentLocation: Location? = null
-    private lateinit var locationManager: LocationManager
 
+    private var currentLocation: Location? = null
+
+    // Provides access to system location services.
+    private lateinit var locationManager: LocationManager
     private var gpsLocationListener: LocationListener? = null
     private var networkLocationListener: LocationListener? = null
 
-    private val handler = Handler()
+    private val handler = Handler(Looper.getMainLooper())
 
     fun getCurrentLocation(): Location? {
         locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
@@ -31,6 +36,7 @@ class LocationManagerAPI(private val context: Context) {
             return null
         }
 
+
         val hasGps = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
         val hasNetwork = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
 
@@ -41,6 +47,7 @@ class LocationManagerAPI(private val context: Context) {
         gpsLocationListener = object : LocationListener {
             override fun onLocationChanged(location: Location) {
                 currentLocation = location
+                // not to continue receiving updates
                 locationManager.removeUpdates(this)
             }
 
@@ -48,6 +55,7 @@ class LocationManagerAPI(private val context: Context) {
             override fun onProviderEnabled(provider: String) {}
             override fun onProviderDisabled(provider: String) {}
         }
+
 
         networkLocationListener = object : LocationListener {
             override fun onLocationChanged(location: Location) {

@@ -1,6 +1,5 @@
 package com.example.weather_app
 
-import LocationManagerAPI
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.pm.PackageManager
@@ -16,18 +15,18 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.weather_app.presentation.pages.Homepage
 import com.example.weather_app.ui.theme.Weather_appTheme
-import com.example.weather_app.viewModels.LocationViewModel
-import com.example.weather_app.viewModels.WeatherViewModel
+import com.example.weather_app.presentation.viewModels.LocationViewModel
+import com.example.weather_app.presentation.viewModels.WeatherViewModel
 
 class MainActivity : ComponentActivity() {
     private lateinit var locationManagerAPI: LocationManagerAPI
     private val locationViewModel: LocationViewModel by viewModels()
-
-    // prevents state changing when screen is rotated and controls UI changes
     private val weatherViewModel: WeatherViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // replaces XML layout to Jetpack Compose
         setContent {
             Weather_appTheme {
                 Surface(
@@ -64,6 +63,5 @@ class MainActivity : ComponentActivity() {
                     this, ACCESS_COARSE_LOCATION
                 ) == PackageManager.PERMISSION_GRANTED
     }
-
 
 }

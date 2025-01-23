@@ -1,9 +1,10 @@
-package com.example.weather_app.viewModels
+package com.example.weather_app.presentation.viewModels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.weather_app.R
 import com.example.weather_app.constants.AppConstant
 import com.example.weather_app.data.remote.NetworkResponse
 import com.example.weather_app.data.remote.RetrofitInstance
@@ -58,6 +59,18 @@ class WeatherViewModel : ViewModel() {
             }
         }
     }
+}
 
+val listIcons: Map<String, Int> = mapOf(
+    "clear" to R.drawable.sun,
+    "sunny" to R.drawable.sun,
+    "rain" to R.drawable.rainy,
+    "cloudy" to R.drawable.cloudy,
+    "snow" to R.drawable.snow
+)
 
+fun getWeatherIcon(condition: String): Int {
+    return listIcons.entries.firstOrNull { (key, _) ->
+        condition.lowercase().contains(key)
+    }?.value ?: R.drawable.no_data
 }
