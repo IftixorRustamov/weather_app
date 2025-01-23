@@ -15,7 +15,7 @@ This repository contains the source code for a simple weather application design
 ![Tashkent Screenshot](https://i.imgur.com/bM4f79Q.png)
 
 ### London
-![London Screenshot](https://i.imgur.com/z7xT3g5.png)
+![London Screenshot](/Users/ymvy/Downloads/Screenshot_20250123_122251.png)
 
 ### Error
 ![Error Screenshot](https://i.imgur.com/G8oF7vR.png)
