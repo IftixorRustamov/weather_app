@@ -54,33 +54,3 @@ Contributions are welcome! If you'd like to contribute to this project, please f
 3.  Make your changes and commit them.
 4.  Push your branch to your forked repository.
 5.  Submit a pull request.
-# Weather App
-
-This repository contains the source code for a simple weather application designed for Android. It allows users to search for a city and view current weather information.
-
-## Setup Instructions
-
-1.  **Clone the repository:**
-    ```bash
-    git clone [repository URL]
-    ```
-2.  **Open with Android Studio:** Open the project in Android Studio.
-3.  **Build and Run:** Build and run the application on an emulator or a physical Android device.
-
-## Future Enhancements
-
-*   **Daily/Hourly Forecast:** Display daily/hourly weather forecasts for the selected city.
-*   **Location Services:** Implement location-based weather fetching.
-*   **Improved UI/UX:** Enhance the user interface for better user experience.
-*   **Settings:** Allow users to configure settings like units of measurement.
-*   **More Weather Conditions:** Add more images to cover more conditions.
-
-## Contributing
-
-Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
-
-1.  Fork the repository.
-2.  Create a new branch for your feature or bug fix.
-3.  Make your changes and commit them.
-4.  Push your branch to your forked repository.
-5.  Submit a pull request.
