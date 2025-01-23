@@ -82,7 +82,8 @@ This repository contains the source code for a simple weather application design
 
 *   **Android Development:** Developed using Android SDK.
 *   **Kotlin:** Written using the Kotlin programming language.
-*   **[Optional: Add specific libraries used, e.g., Retrofit, Glide, etc.]**
+*  **Retrofit:** Used for making HTTP network requests to fetch weather data from an API.
+*   **GPS:** Utilized for determining the user's current location to fetch weather information.
 
 ## Setup Instructions
 
